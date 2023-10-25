@@ -4,7 +4,7 @@ This App will have a product details and add and remove card informations once y
 
 ## To Run appllication
  `
-  npm run deve
+  npm run dev
  `
 
 - [Live sire](https://dashing-vacherin-27a6b8.netlify.app/)
