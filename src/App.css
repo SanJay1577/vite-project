@@ -1,37 +1,33 @@
-.app{
+.cart-comp{
+ display: flex;
+ justify-content: end;
+}
+.cart-area{
   display: flex;
   flex-wrap: wrap;
   gap: 2rem;
+  margin: 15px;
 }
 
-.movie-card{
+.card-component{
    display: flex ;
    flex-direction: column;
-   width: 350px;
+   width: 250px;
    height: 250px;
    border : 1px solid black;
    border-radius : 5px;
    justify-content: stretch;
+   padding : 5px;
 }
 
 img{
-  width: 350px;
+  width: 250px;
   height: 130px;
-  object-fit: cover;
+  object-fit:contain;
 }
 
-.mvdetail-sec{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 10px;
+button{
+  padding : 7px;
+  width: max-content;
+  margin: 0 auto;
 }
- button{
-    width: 100px;
-    height: 25px;
-    border: none;
-    background-color: crimson;
-    padding: 5px;
-    border-radius: 5px;
-    color: white
- }

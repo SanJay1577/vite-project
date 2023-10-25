@@ -1,65 +1,57 @@
-
-import './App.css'
+import { useState } from "react";
+import "./App.css";
+import ProductCard from "./ProductCard.jsx";
 function App() {
-  const data = [{
-    name : "Leo",
-    img:"https://www.pinkvilla.com/pics/480x480/990020216_thalapathy-vijay-leo-first-single-naa-ready-poster_202306.jpg",
-    rating : 90,
-  },
+  const data = [
+    {
+      productImage:
+        "https://www.skechers.in/on/demandware.static/-/Sites-skechers_india/default/dw17940ed5/images/large/195969748763-1.jpg",
+      productName: "Sketchers",
+    },
+    {
+      productImage:
+        "https://www.skechers.in/on/demandware.static/-/Sites-skechers_india/default/dw17940ed5/images/large/195969748763-1.jpg",
+      productName: "Nike",
+    },
+    {
+      productImage:
+        "https://www.skechers.in/on/demandware.static/-/Sites-skechers_india/default/dw17940ed5/images/large/195969748763-1.jpg",
+      productName: "Puma",
+    },
+    {
+      productImage:
+        "https://www.skechers.in/on/demandware.static/-/Sites-skechers_india/default/dw17940ed5/images/large/195969748763-1.jpg",
+      productName: "USP",
+    },
+  ];
 
-  {
-    name : "Vikram",
-    img:"https://cdnb.artstation.com/p/assets/images/images/044/051/953/large/balaji-vb-vikram-poster-balaji-vb.jpg?1638967549",
-    rating : 95,
-  },
+  const [product, setProduct] = useState([]);
+  const [inCart, setInCart] = useState(0);
 
- {
-    name : "Kaithi",
-    img : "https://moviegalleri.net/wp-content/gallery/kaithi-movie-release-posters/karthi-kaithi-movie-release-posters-048674e.jpg",
-    rating : 92,
-  }
-]
+  // dummy dely
+  setTimeout(() => {
+    setProduct(data);
+  }, 1000);
 
   return (
-    <div className='app'> 
-      {
-        data.map((movie, idx)=>(
-          <MovieCard key={idx}
-          img={movie.img}
-          name={movie.name}
-          rating={movie.rating}
+    <div className="app">
+      <div className="cart-comp">
+        <h1>CART {inCart}</h1>
+      </div>
+
+      <div className="cart-area">
+        {product?.map((prod, idx) => (
+          <ProductCard
+            key={idx}
+            productImg={prod.productImage}
+            productName={prod.productName}
+            inCart={inCart}
+            setInCart={setInCart}
           />
-        ))
-      }
-
-    </div>
-  )
-}
-//props
-export default App
-
-//prop
-//const prop= {}
-// prop.name = "leo"
-// prop= {
-//   name : "leo"
-// }
-// const {name} = prop
-
-// eslint-disable-next-line react/prop-types
-function MovieCard({img, name, rating}){
-  return (
-    <div className='movie-card'>
-      <div className='img-sec'>
-        <img src={img}/>
-      </div>
-      <div className='mvname-sec'>
-        <h3>{name}</h3>
-      </div>
-      <div className='mvdetail-sec'>
-        <button>Watch now</button>
-        <p>Ratings : {rating}%</p>
+        ))}
       </div>
     </div>
-  )
+  );
 }
+
+export default App;
