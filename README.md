@@ -1,8 +1,10 @@
 # React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This App will have a product details and add and remove card informations once you click "add to cart" button cart quantity will be added and the button will change from remove from cart vice versa will happen for another button
 
-Currently, two official plugins are available:
+## To Run appllication
+ `
+  npm run deve
+ `
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- [Live sire](https://dashing-vacherin-27a6b8.netlify.app/)
