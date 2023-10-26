@@ -1,33 +1,23 @@
-.cart-comp{
- display: flex;
- justify-content: end;
+*{
+  margin: 0;
+  padding: 0;
+  text-align: center;
 }
-.cart-area{
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-  margin: 15px;
+.top-bar{
+  grid-area: top;
+  background-color: bisque;
 }
-
-.card-component{
-   display: flex ;
-   flex-direction: column;
-   width: 250px;
-   height: 250px;
-   border : 1px solid black;
-   border-radius : 5px;
-   justify-content: stretch;
-   padding : 5px;
+.work-space{
+  display: grid;
+  grid-template : 
+  "top top top top top" 10vh
+  "side main main main main" 90vh;
 }
-
-img{
-  width: 250px;
-  height: 130px;
-  object-fit:contain;
+.side-bar{
+  grid-area: side;
+  background-color: aqua;
 }
-
-button{
-  padding : 7px;
-  width: max-content;
-  margin: 0 auto;
+.main-bar {
+  grid-area: main;
+  background-color: blue;
 }
