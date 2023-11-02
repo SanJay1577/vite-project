@@ -35,6 +35,13 @@ export default function Main() {
     setShowForm(false);
     setEditId(id);
   };
+
+  const handleStatusChange = (id, event) => {
+    // get the object and change the status info
+    doctorData[id].status = event.target.value;
+    setDoctordata([...doctorData]);
+  };
+
   return (
     <div className="main">
       {showForm === true ? (
@@ -60,7 +67,10 @@ export default function Main() {
                 <h2 className="card-title">{docInfo.doc_name}</h2>
                 <p>{docInfo.hospital_name}</p>
                 <p>{docInfo.specialization}</p>
-                <select className="select select-bordered select-sm w-36 max-w-xs">
+                <select
+                  className="select select-bordered select-sm w-36 max-w-xs"
+                  onChange={(e) => handleStatusChange(idx, e)}
+                >
                   {docInfo.status == "Available" ? (
                     <option>Available</option>
                   ) : (
