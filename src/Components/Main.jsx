@@ -1,5 +1,7 @@
 /* eslint-disable no-unused-vars */
 import { useState } from "react";
+import AddDoctor from "./AddDoctor";
+import EditDoctor from "./EditDoctor";
 
 // eslint-disable-next-line react/prop-types
 export default function Main() {
@@ -19,8 +21,34 @@ export default function Main() {
     },
   ];
   const [doctorData, setDoctordata] = useState(data);
+  const [showForm, setShowForm] = useState(true);
+  const [editId, setEditId] = useState("");
+
+  // delete doctor details functionality
+  const deletDoctorDetails = (id) => {
+    const remainingDoctors = doctorData.filter((docInfo, idx) => idx !== id);
+    setDoctordata(remainingDoctors);
+  };
+
+  //edit button handler
+  const handleEdit = (id) => {
+    setShowForm(false);
+    setEditId(id);
+  };
   return (
     <div className="main">
+      {showForm === true ? (
+        <AddDoctor doctorData={doctorData} setDoctordata={setDoctordata} />
+      ) : (
+        <EditDoctor
+          doctorData={doctorData}
+          setDoctordata={setDoctordata}
+          showForm={showForm}
+          setShowForm={setShowForm}
+          editId={editId}
+        />
+      )}
+
       {doctorData && (
         <>
           {doctorData?.map((docInfo, idx) => (
@@ -45,8 +73,18 @@ export default function Main() {
                   )}
                 </select>
                 <div className="card-actions justify-end">
-                  <button className="btn btn-primary">edit</button>
-                  <button className="btn btn-error">delete</button>
+                  <button
+                    className="btn btn-primary"
+                    onClick={() => handleEdit(idx)}
+                  >
+                    edit
+                  </button>
+                  <button
+                    className="btn btn-error"
+                    onClick={() => deletDoctorDetails(idx)}
+                  >
+                    delete
+                  </button>
                 </div>
               </div>
             </div>
