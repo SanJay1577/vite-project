@@ -1,11 +1,12 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const AddDoctor = ({ doctorData, setDoctordata }) => {
   const [docName, setDocName] = useState("");
   const [hospitalName, setHospitalName] = useState("");
   const [specialization, setSpecilazation] = useState("");
-
+  const navigate = useNavigate();
   const addNewDoctorDetails = () => {
     const newDoctorDetails = {
       doc_name: docName,
@@ -14,10 +15,11 @@ const AddDoctor = ({ doctorData, setDoctordata }) => {
       status: "Available",
     };
     setDoctordata([...doctorData, newDoctorDetails]);
+    navigate("/");
   };
 
   return (
-    <div className="grid grid-rows-4 justify-center gap-3 ">
+    <div className="grid grid-rows-4 justify-center gap-1 ">
       <input
         type="text"
         placeholder="Enter Doctor Name"

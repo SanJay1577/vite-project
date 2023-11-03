@@ -1,28 +1,11 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import { useState } from "react";
-import AddDoctor from "./AddDoctor";
-import EditDoctor from "./EditDoctor";
+import { useNavigate } from "react-router-dom";
 
 // eslint-disable-next-line react/prop-types
-export default function Main() {
-  const data = [
-    {
-      doc_name: "Prashanth",
-      hospital_name: "Kaveri",
-      specialization: "Surgery",
-      status: "Available",
-    },
-
-    {
-      doc_name: "Nikhil",
-      hospital_name: "Apollo",
-      specialization: "Ortho",
-      status: "Not Available",
-    },
-  ];
-  const [doctorData, setDoctordata] = useState(data);
-  const [showForm, setShowForm] = useState(true);
-  const [editId, setEditId] = useState("");
+export default function Main({ doctorData, setDoctordata }) {
+  const navigate = useNavigate();
 
   // delete doctor details functionality
   const deletDoctorDetails = (id) => {
@@ -32,8 +15,7 @@ export default function Main() {
 
   //edit button handler
   const handleEdit = (id) => {
-    setShowForm(false);
-    setEditId(id);
+    navigate(`/edit/doc/${id}`);
   };
 
   const handleStatusChange = (id, event) => {
@@ -44,18 +26,14 @@ export default function Main() {
 
   return (
     <div className="main">
-      {showForm === true ? (
-        <AddDoctor doctorData={doctorData} setDoctordata={setDoctordata} />
-      ) : (
-        <EditDoctor
-          doctorData={doctorData}
-          setDoctordata={setDoctordata}
-          showForm={showForm}
-          setShowForm={setShowForm}
-          editId={editId}
-        />
-      )}
-
+      <div className=" grid justify-end p-2">
+        <button
+          className="btn btn-primary w-24"
+          onClick={() => navigate("/add/doc")}
+        >
+          Add Doctor
+        </button>
+      </div>
       {doctorData && (
         <>
           {doctorData?.map((docInfo, idx) => (

@@ -1,18 +1,13 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-const EditDoctor = ({
-  doctorData,
-  setDoctordata,
-  showForm,
-  setShowForm,
-  editId,
-}) => {
+const EditDoctor = ({ doctorData, setDoctordata, editId }) => {
   const [docName, setDocName] = useState("");
   const [hospitalName, setHospitalName] = useState("");
   const [specialization, setSpecilazation] = useState("");
   const [docStatus, setDocStatus] = useState("");
-
+  const navigate = useNavigate();
   useEffect(() => {
     const selectedDoctor = doctorData.filter((doc, idx) => idx == editId);
     setDocName(selectedDoctor[0].doc_name);
@@ -32,7 +27,7 @@ const EditDoctor = ({
 
     doctorData[editId] = editedDoctor;
     setDoctordata([...doctorData]);
-    setShowForm(!showForm);
+    navigate("/");
   };
 
   return (
