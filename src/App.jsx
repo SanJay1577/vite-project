@@ -4,27 +4,18 @@ import "./App.css";
 import DocDash from "./Pages/DocDash";
 import DocAdd from "./Pages/DocAdd";
 import DocEdit from "./Pages/DocEdit";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import NoPage from "./Pages/NoPage";
 import { AppState } from "./Context/AppContext";
+import { getAllDoctor } from "./helpers/helper.js";
 
 function App() {
-  const data = [
-    {
-      doc_name: "Prashanth",
-      hospital_name: "Kaveri",
-      specialization: "Surgery",
-      status: "Available",
-    },
-
-    {
-      doc_name: "Nikhil",
-      hospital_name: "Apollo",
-      specialization: "Ortho",
-      status: "Not Available",
-    },
-  ];
-  const [doctorData, setDoctordata] = useState(data);
+  const [doctorData, setDoctordata] = useState();
+  useEffect(() => {
+    getAllDoctor().then((data) => {
+      setDoctordata(data);
+    });
+  }, []);
 
   const { theme } = AppState();
   return (

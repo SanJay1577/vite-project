@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { addNewDoctor } from "../helpers/helper";
 
 const AddDoctor = ({ doctorData, setDoctordata }) => {
   const [docName, setDocName] = useState("");
@@ -14,8 +15,14 @@ const AddDoctor = ({ doctorData, setDoctordata }) => {
       specialization,
       status: "Available",
     };
-    setDoctordata([...doctorData, newDoctorDetails]);
-    navigate("/");
+    addNewDoctor(newDoctorDetails).then((data) => {
+      if (data) {
+        setDoctordata([...doctorData, newDoctorDetails]);
+        navigate("/");
+      } else {
+        console.log("sorry cannot add new doctor");
+      }
+    });
   };
 
   return (

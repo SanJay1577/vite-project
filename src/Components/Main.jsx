@@ -2,6 +2,7 @@
 /* eslint-disable no-unused-vars */
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { deleteDoctor } from "../helpers/helper";
 
 // eslint-disable-next-line react/prop-types
 export default function Main({ doctorData, setDoctordata }) {
@@ -9,8 +10,16 @@ export default function Main({ doctorData, setDoctordata }) {
 
   // delete doctor details functionality
   const deletDoctorDetails = (id) => {
-    const remainingDoctors = doctorData.filter((docInfo, idx) => idx !== id);
-    setDoctordata(remainingDoctors);
+    deleteDoctor(id).then((data) => {
+      if (data) {
+        const remainingDoctors = doctorData.filter(
+          (docInfo) => docInfo.id != id
+        );
+        setDoctordata([...remainingDoctors]);
+      } else {
+        console.log("Error deleting data");
+      }
+    });
   };
 
   //edit button handler
@@ -69,7 +78,7 @@ export default function Main({ doctorData, setDoctordata }) {
                   </button>
                   <button
                     className="btn btn-error"
-                    onClick={() => deletDoctorDetails(idx)}
+                    onClick={() => deletDoctorDetails(docInfo.id)}
                   >
                     delete
                   </button>
