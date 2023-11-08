@@ -72,7 +72,7 @@ export default function Main({ doctorData, setDoctordata }) {
                 <div className="card-actions justify-end">
                   <button
                     className="btn btn-primary"
-                    onClick={() => handleEdit(idx)}
+                    onClick={() => handleEdit(docInfo.id)}
                   >
                     edit
                   </button>

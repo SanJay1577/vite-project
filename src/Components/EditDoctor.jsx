@@ -1,15 +1,19 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { editNewDoctor } from "../helpers/helper";
 
 const EditDoctor = ({ doctorData, setDoctordata, editId }) => {
   const [docName, setDocName] = useState("");
   const [hospitalName, setHospitalName] = useState("");
   const [specialization, setSpecilazation] = useState("");
   const [docStatus, setDocStatus] = useState("");
+  const [index, setIndex] = useState();
   const navigate = useNavigate();
   useEffect(() => {
-    const selectedDoctor = doctorData.filter((doc, idx) => idx == editId);
+    const selectedDoctor = doctorData.filter((doc) => doc.id == editId);
+    const selectdDocIndex = doctorData.findIndex((doc) => doc.id == editId);
+    setIndex(selectdDocIndex);
     setDocName(selectedDoctor[0].doc_name);
     setHospitalName(selectedDoctor[0].hospital_name);
     setSpecilazation(selectedDoctor[0].specialization);
@@ -25,9 +29,15 @@ const EditDoctor = ({ doctorData, setDoctordata, editId }) => {
       status: docStatus,
     };
 
-    doctorData[editId] = editedDoctor;
-    setDoctordata([...doctorData]);
-    navigate("/");
+    editNewDoctor(editId, editedDoctor).then((data) => {
+      if (data) {
+        doctorData[index] = editedDoctor;
+        setDoctordata([...doctorData]);
+        navigate("/");
+      } else {
+        console.log("error occured");
+      }
+    });
   };
 
   return (
