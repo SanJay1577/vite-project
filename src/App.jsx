@@ -10,6 +10,7 @@ import { AppState } from "./Context/AppContext";
 import { getAllDoctor } from "./helpers/helper.js";
 import StatePage from "./Pages/StatePgae.jsx";
 import CallBackPage from "./Pages/CallbackPage.jsx";
+import Login from "./Pages/Login.jsx";
 
 function App() {
   const [doctorData, setDoctordata] = useState();
@@ -43,7 +44,10 @@ function App() {
           }
         />
         <Route path="/state" element={<StatePage />} />
+
         <Route path="/callback" element={<CallBackPage />} />
+
+        <Route path="/login" element={<Login />} />
 
         <Route path="*" element={<NoPage />} />
       </Routes>
