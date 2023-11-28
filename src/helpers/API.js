@@ -1,1 +1,2 @@
-export const API = "https://65237389f43b179384156c37.mockapi.io/users";
+export const API = "https://docapp-0o2c.onrender.com/doctor";
+export const UserAPI = "https://docapp-0o2c.onrender.com/user";

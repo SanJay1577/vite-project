@@ -51,7 +51,7 @@ export default function Main({ doctorData, setDoctordata }) {
               className="card card-compact w-96 bg-base-100 shadow-xl"
             >
               <div className="card-body">
-                <h2 className="card-title">{docInfo.doc_name}</h2>
+                <h2 className="card-title">{docInfo.doctor_name}</h2>
                 <p>{docInfo.hospital_name}</p>
                 <p>{docInfo.specialization}</p>
                 <select
@@ -72,13 +72,13 @@ export default function Main({ doctorData, setDoctordata }) {
                 <div className="card-actions justify-end">
                   <button
                     className="btn btn-primary"
-                    onClick={() => handleEdit(docInfo.id)}
+                    onClick={() => handleEdit(docInfo._id)}
                   >
                     edit
                   </button>
                   <button
                     className="btn btn-error"
-                    onClick={() => deletDoctorDetails(docInfo.id)}
+                    onClick={() => deletDoctorDetails(docInfo._id)}
                   >
                     delete
                   </button>

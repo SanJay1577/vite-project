@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import "./App.css";
 import DocDash from "./Pages/DocDash";
 import DocAdd from "./Pages/DocAdd";
@@ -13,11 +13,16 @@ import CallBackPage from "./Pages/CallbackPage.jsx";
 import Login from "./Pages/Login.jsx";
 
 function App() {
+  const navigate = useNavigate();
   const [doctorData, setDoctordata] = useState();
   useEffect(() => {
-    getAllDoctor().then((data) => {
-      setDoctordata(data);
-    });
+    if (!localStorage.getItem("token")) {
+      navigate("/login", { replace: true });
+    } else {
+      getAllDoctor().then((data) => {
+        setDoctordata(data.data);
+      });
+    }
   }, []);
 
   const { theme } = AppState();

@@ -7,11 +7,14 @@ const AppCtx = createContext(null);
 const AppContext = ({ children }) => {
   // provider with data
   const [theme, setTheme] = useState("dark");
+  const [token, setToken] = useState("");
   return (
     <AppCtx.Provider
       value={{
         theme,
         setTheme,
+        token,
+        setToken,
       }}
     >
       {children}
